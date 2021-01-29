@@ -1,10 +1,17 @@
-import modules.collections as collections
 from fastapi import FastAPI
-from pymongo import MongoClient
+from fastapi.middleware.cors import CORSMiddleware
+from modules.router import router
+from modules.db import MongodbConnector
 
 app = FastAPI ()
-client = MongoClient ('mongodb://ibti:%23ibti%402021@18.217.92.215:27017/')
-db = client ['testeProjeto']
+
+origins = ['*']
+app.add_middleware (CORSMiddleware, allow_origins = origins, allow_credentials = True, allow_methods = ['*'], allow_headers = ['*'])
+app.include_router (router)
+
+address = 'mongodb://ibti:%23ibti%402021@18.217.92.215:27017/'
+database = 'testeProjeto'
+connector = MongodbConnector ().connect (address, database)
 
 @app.get ('/')
 async def root ():
@@ -12,45 +19,3 @@ async def root ():
     'year': 2021,
     'location': 'IBTI'
   }
-
-@app.get ('/rhf')
-async def rhf ():
-  res = []
-  collection = db ['sensorTemperatura']
-  
-  for x in collection.find ():
-    res.append (collections.SensorTemperatura (**x))
-  
-  return res
-
-@app.get ('/rhf/{number}')
-async def rhf_number (number: int):
-  res = []
-  collection = db ['sensorTemperatura']
-  
-  for x in collection.find ():
-    res.append (collections.SensorTemperatura (**x))
-  
-  res.reverse ()
-  return res [0 : number]
-
-@app.get ('/gps')
-async def gps ():
-  res = []
-  collection = db ['gps']
-
-  for x in collection.find ():
-    res.append (collections.Gps (**x))
-
-  return res
-
-@app.get ('/gps/{number}')
-async def gps (number: int):
-  res = []
-  collection = db ['gps']
-
-  for x in collection.find ():
-    res.append (collections.Gps (**x))
-
-  res.reverse ()
-  return res [0 : number]
