@@ -1,11 +1,12 @@
 import React from 'react';
-import { Chart } from 'react-google-charts'
+import { Chart, Row, Col } from 'react-google-charts'
+import { Container } from 'react-bootstrap';
 
 export default function Graph() {
     return (
-        <div>
-            <Chart
-                width={'100%'}
+        <Container fluid>
+            <Chart style={{marginLeft:'20%'}}
+                width={'500px'}
                 height={'500px'}
                 chartType="LineChart"
                 loader={<div>Carregando</div>}
@@ -27,15 +28,17 @@ export default function Graph() {
                     ]
                 }
                 options={{
-                    hAxis:{
-                        title:'Tempo'
+                    hAxis: {
+                        title: 'Tempo'
                     },
-                    vAxis:{
-                        title:'Popularidade'
+                    vAxis: {
+                        title: 'Popularidade'
                     },
                 }}
-                rootProps={{'data-testid' : '1'}}
+                rootProps={{ 'data-testid': '1' }}
             />
-        </div>
+
+
+        </Container>
     )
 }
