@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import './styles.css';
 import {Dropdown} from 'react-bootstrap';
 import './styles.css';
-import SideBar from '../SideBar';
+import Menu from '../Menu'
 
 export default function Header(){  
     return(
         <header className="container">
-            <SideBar/>
+            <Menu/>
         
             <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">Devices</Dropdown.Toggle>

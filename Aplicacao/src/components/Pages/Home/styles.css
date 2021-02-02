@@ -1,8 +1,8 @@
 .deck{
-    margin-bottom: 20%;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     display: flex;
+    margin-top: 8%;
+    margin-left: 30%;
 }
 
