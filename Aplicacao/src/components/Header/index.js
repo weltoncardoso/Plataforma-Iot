@@ -1,12 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './styles.css';
 import {Dropdown} from 'react-bootstrap';
-import Logo from '../assets/logo.svg';
+import {Nav} from 'react-bootstrap';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import {Link} from 'react-router-dom';
+import {SidebarData} from '../SideBar/SidebarData';
+import { IconContext } from 'react-icons';
+import './styles.css';
 
 export default function Header(){
+    const [sidebar, setSaidebar] = useState(false);
+    const showSidebar = () => setSaidebar(!sidebar)
+    
     return(
         <header className="container">
-            <img src={Logo} width="100" height="100"/>
+            <IconContext.Provider value={{ color: '#FFF' }}>
+        <div className='navbar'>
+          <Link to='#' className='menu-bars'>
+            <FaIcons.FaBars onClick={showSidebar} />
+          </Link>
+        </div>
+        <Nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className='nav-menu-items' onClick={showSidebar}>
+            <li className='navbar-toggle'>
+              <Link to='#' className='menu-bars'>
+                  
+                <AiIcons.AiOutlineClose size={20} />
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </Nav>
+      </IconContext.Provider>
+        
             <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">Devices</Dropdown.Toggle>
                 <Dropdown.Menu>
