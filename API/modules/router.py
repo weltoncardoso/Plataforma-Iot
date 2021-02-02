@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from .collections import *
+from .models import *
 from .db import *
 
 router = APIRouter ()
@@ -19,9 +19,7 @@ async def rhf (number: int):
   res = []
   collection = MongodbConnector ().get_collection ('sensorTemperatura')
   
-  i = 0
-  query = collection.find ().sort ('counter', -1).limit (number)
-  for x in query:
+  for x in collection.find ().sort ('counter', -1).limit (number):
     res.append (SensorTemperatura (**x))
   
   return res
