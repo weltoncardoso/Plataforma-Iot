@@ -1,0 +1,8 @@
+.deck{
+    margin-bottom: 20%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+

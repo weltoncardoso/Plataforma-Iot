@@ -25,7 +25,6 @@ export default function Header(){
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
-                  
                 <AiIcons.AiOutlineClose size={20} />
               </Link>
             </li>
