@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 import {SidebarData} from './SidebarData';
 import { IconContext } from 'react-icons';
 import './styles.css';
-/* Sidebar adicionado Header, no momento este aquivo estea desativado. Para ativar basta colocar a tag no arquivo App.js <Sidebar/>*/
 
 export default function Sidebar(){
     const [sidebar, setSaidebar] = useState(false);
