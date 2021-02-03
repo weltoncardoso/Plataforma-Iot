@@ -21,5 +21,9 @@ def csv (collection: str):
     series_obj = pandas.Series (doc, name = doc_id)
     docs = docs.append (series_obj)
 
-  return docs.to_csv (path_or_buf = f'/{collection}.csv', sep = ',')
+  try:
+    docs.to_csv (path_or_buf = f'./{collection}.csv', sep = ',')
+    return 200
+  except Exception as err:
+    return err
   
