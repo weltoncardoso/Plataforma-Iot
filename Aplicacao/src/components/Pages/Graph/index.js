@@ -5,9 +5,9 @@ import { Container } from 'react-bootstrap';
 export default function Graph() {
     return (
         <Container fluid>
-            <Chart style={{marginLeft:'20%'}}
-                width={'500px'}
-                height={'500px'}
+            <Chart
+                width={'100%'}
+                height={'380px'}
                 chartType="LineChart"
                 loader={<div>Carregando</div>}
                 data={

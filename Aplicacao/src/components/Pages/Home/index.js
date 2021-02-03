@@ -3,6 +3,7 @@ import { Col, Row, Container, CardDeck, Card, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { BsClipboardData, BsGraphUp } from 'react-icons/bs'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
+import Graph from '../../Pages/Graph';
 import './styles.css';
 
 export default function Home() {
@@ -46,25 +47,39 @@ export default function Home() {
                 <Col>
                     <div className="info">
                         <CardDeck>
-                            <Card>
-                                <Card.Title>Tempo de uso</Card.Title>
+                            <Card bg="danger" text='light'>
                                 <Card.Body>
-
+                                    <Card.Title>Temperatura</Card.Title>
+                                    <Card.Text>
+                                    <h1><strong>41ºC</strong></h1>
+                                    </Card.Text>
                                 </Card.Body>
                             </Card>
-                            <Card>
-                                <Card.Title>Frequencia</Card.Title>
+                            <Card bg="light">
                                 <Card.Body>
-
+                                    <Card.Title>Humidade</Card.Title>
+                                    <Card.Text>
+                                    <h1><strong>30%</strong></h1>
+                                    </Card.Text>
                                 </Card.Body>
                             </Card>
-                            <Card>
-                                <Card.Title>Local</Card.Title>
+                            <Card bg="success" text='light'>
                                 <Card.Body>
+                                    <Card.Title>Bateria</Card.Title>
+                                    <Card.Text>
+                                    <h1><strong>90%</strong></h1>
+                                    </Card.Text>
 
                                 </Card.Body>
                             </Card>
                         </CardDeck>
+                        <br></br>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>Gráfico</Card.Title>
+                                <Graph/>
+                            </Card.Body>
+                        </Card>
 
 
                     </div>
