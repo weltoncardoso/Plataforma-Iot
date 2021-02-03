@@ -3,14 +3,16 @@ import { Col, Row, Container, CardDeck, Card, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { BsClipboardData, BsGraphUp } from 'react-icons/bs'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
+import {SiOpenstreetmap} from 'react-icons/si'
+import {RiAddFill} from 'react-icons/ri'
 import Graph from '../../Pages/Graph';
 import './styles.css';
 
 export default function Home() {
     const [navigation, setNavigation] = useState([
-        { id: '1', title: 'Dados', info: 'Dados cadastrados', icon: <BsClipboardData size={50} />, nav: '/tabela' },
-        { id: '2', title: 'Indicador', info: 'Sobre o dispositivo', icon: <AiOutlineInfoCircle size={50} />, nav: '/indicator' },
-        { id: '3', title: 'Gráfico', info: 'Sobre o dispositivo', icon: <BsGraphUp size={50} />, nav: '/graph' },
+        { id: '1', title: 'Adicionar dispositivo', info: 'Cadastrar novo didpositivo', icon: <RiAddFill size={40} />, nav: '/tabela' },
+        { id: '2', title: 'Indicador', info: 'Informações do Dispositivo', icon: <AiOutlineInfoCircle size={50} />, nav: '/indicator' },
+        { id: '3', title: 'Localizações dos dispositivos', info: 'Localização', icon: <SiOpenstreetmap size={50} />, nav: '/graph' },
     ]);
 
     useEffect(() => {

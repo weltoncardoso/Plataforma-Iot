@@ -7,7 +7,7 @@ export default function Graph() {
         <Container fluid>
             <Chart
                 width={'100%'}
-                height={'380px'}
+                height={'470px'}
                 chartType="LineChart"
                 loader={<div>Carregando</div>}
                 data={
