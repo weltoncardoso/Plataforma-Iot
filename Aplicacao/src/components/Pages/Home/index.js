@@ -28,7 +28,7 @@ export default function Home() {
             <Row lg={true}>
                 <Col lg='3' >
                     <Jumbotron>
-                        <CardDeck style={{ textAlign: 'center', marginLeft: '2%' }}>
+                        <CardDeck style={{ textAlign: 'center' }}>
                             {navigation.map(dados => (
                                 <Link to={dados.nav} style={{ textDecoration: 'none' }}>
                                     <Card style={{ marginBottom: '5%' }}>

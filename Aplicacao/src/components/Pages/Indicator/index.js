@@ -1,26 +1,37 @@
 import React from 'react'
-import { Container, Jumbotron, Card } from 'react-bootstrap';
+import { Container, Jumbotron, Card, Col, Row } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Logo from '../../assets/logo.svg'
+import './styles.css';
 
 export default function Indicator() {
     return (
-        <Container>
+        <Container fluid>
             <Jumbotron>
-                
-            <ListGroup>
-                <h1>Informações</h1>
-                <Card>
-                <Card.Body>
-                    <Card.Img src={Logo}/>
-                </Card.Body>
-                </Card>
-                <ListGroup.Item>Dispositivo: </ListGroup.Item>
-                <ListGroup.Item>TS: </ListGroup.Item>
-                <ListGroup.Item>Latitude: </ListGroup.Item>
-                <ListGroup.Item>Longitude</ListGroup.Item>
-                <ListGroup.Item>Bateria: </ListGroup.Item>
-            </ListGroup>
+            <h1 className="titleInfo">Informações</h1>
+                <Row>
+                    
+                    <Col lg="3">
+                        
+                        <Card>
+                            <Card.Body>
+                                <Card.Img src={Logo} />
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                    
+                    <ListGroup>
+                    <ListGroup.Item>Dispositivo: </ListGroup.Item>
+                    <ListGroup.Item>TS: </ListGroup.Item>
+                    <ListGroup.Item>Latitude: </ListGroup.Item>
+                    <ListGroup.Item>Longitude</ListGroup.Item>
+                    <ListGroup.Item>Bateria: </ListGroup.Item>
+                </ListGroup>
+                    </Col>
+                </Row>
+
+               
             </Jumbotron>
         </Container>
     )
