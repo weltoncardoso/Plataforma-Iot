@@ -7,6 +7,7 @@ import Tabela from '../components/Pages/Table';
 import Indicador from '../components/Pages/Indicator';
 import Graph from '../components/Pages/Graph';
 import Mapa from '../components/Pages/Map';
+import Cadastro from '../components/Pages/Cadastro';
 
 export default function Router(){
     return(
@@ -17,6 +18,7 @@ export default function Router(){
             <Route path="/indicator" component={Indicador}/>
             <Route path="/map" component={Mapa}/>
             <Route path="/graph" component={Graph}/>
+            <Route path="/cadastro" component={Cadastro}/>
         </Switch>
     );
 }
