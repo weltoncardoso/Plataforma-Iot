@@ -1,10 +1,21 @@
 import React from 'react';
-import {Container} from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-export default function Cadastro(){
-    return(
+export default function Cadastro() {
+    return (
         <Container>
-            <h1>Cadastro</h1>
+            <Link to="/">
+                <Button variant="light">Voltar</Button>
+            </Link>
+            <Row>
+                <Col>
+
+                </Col>
+                <Col >
+                    
+                </Col>
+            </Row>
         </Container>
     )
 }

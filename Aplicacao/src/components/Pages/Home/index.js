@@ -10,7 +10,7 @@ import './styles.css';
 
 export default function Home() {
     const [navigation, setNavigation] = useState([
-        { id: '1', title: 'Adicionar dispositivo', info: 'Cadastrar novo didpositivo', icon: <RiAddFill size={40} />, nav: '/tabela' },
+        { id: '1', title: 'Adicionar dispositivo', info: 'Cadastrar novo didpositivo', icon: <RiAddFill size={40} />, nav: '/cadastro' },
         { id: '2', title: 'Indicador', info: 'Informações do Dispositivo', icon: <AiOutlineInfoCircle size={50} />, nav: '/indicator' },
         { id: '3', title: 'Localizações dos dispositivos', info: 'Localização', icon: <SiOpenstreetmap size={50} />, nav: '/graph' },
     ]);
