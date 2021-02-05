@@ -7,7 +7,7 @@ import {IoMdArrowRoundBack} from 'react-icons/io';
 export default function Tabela() {
     return (
         <Container fluid>
-            <Link to="/">
+            <Link to="/indicator">
                 <Button variant="light"><IoMdArrowRoundBack size={30}/></Button>
             </Link>
 

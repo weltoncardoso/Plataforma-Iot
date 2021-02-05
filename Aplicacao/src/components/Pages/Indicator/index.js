@@ -3,14 +3,14 @@ import { Container, Jumbotron, Card, Col, Row, Button } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom';
-import {IoMdArrowRoundBack} from 'react-icons/io';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import './styles.css';
 
 export default function Indicator() {
     return (
         <Container fluid>
             <Link to="/" >
-                <Button variant="light" style={{ marginBottom: '2%' }}><IoMdArrowRoundBack size={30}/></Button>
+                <Button variant="light" style={{ marginBottom: '2%' }}><IoMdArrowRoundBack size={30} /></Button>
             </Link>
             <Jumbotron>
 
@@ -34,6 +34,9 @@ export default function Indicator() {
                             <ListGroup.Item>Longitude</ListGroup.Item>
                             <ListGroup.Item>Bateria: </ListGroup.Item>
                         </ListGroup>
+                        <Link to="/tabela">
+                            <Button variant="warning" style={{marginTop:'2%', marginLeft:'89%'}}>Historico</Button>
+                        </Link>
                     </Col>
                 </Row>
 
