@@ -13,7 +13,7 @@ export default function Indicator() {
                     
                     <Col lg="3">
                         
-                        <Card>
+                        <Card style={{marginTop:'6%'}}>
                             <Card.Body>
                                 <Card.Img src={Logo} />
                             </Card.Body>
@@ -23,7 +23,7 @@ export default function Indicator() {
                     
                     <ListGroup>
                     <ListGroup.Item>Dispositivo: </ListGroup.Item>
-                    <ListGroup.Item>TS: </ListGroup.Item>
+                    <ListGroup.Item>Data: </ListGroup.Item>
                     <ListGroup.Item>Latitude: </ListGroup.Item>
                     <ListGroup.Item>Longitude</ListGroup.Item>
                     <ListGroup.Item>Bateria: </ListGroup.Item>
