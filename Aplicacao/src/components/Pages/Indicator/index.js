@@ -3,13 +3,14 @@ import { Container, Jumbotron, Card, Col, Row, Button } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup'
 import Logo from '../../assets/logo.svg'
 import { Link } from 'react-router-dom';
+import {IoMdArrowRoundBack} from 'react-icons/io';
 import './styles.css';
 
 export default function Indicator() {
     return (
         <Container fluid>
             <Link to="/" >
-                <Button variant="light" style={{ marginBottom: '2%' }}>Voltar</Button>
+                <Button variant="light" style={{ marginBottom: '2%' }}><IoMdArrowRoundBack size={30}/></Button>
             </Link>
             <Jumbotron>
 

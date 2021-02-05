@@ -1,13 +1,14 @@
 import React from 'react';
 import { Container, Table, Button, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {IoMdArrowRoundBack} from 'react-icons/io';
 
 
 export default function Tabela() {
     return (
         <Container fluid>
             <Link to="/">
-                <Button variant="light">Voltar</Button>
+                <Button variant="light"><IoMdArrowRoundBack size={30}/></Button>
             </Link>
 
             <Row lg={true} style={{marginTop:'2%'}}>
