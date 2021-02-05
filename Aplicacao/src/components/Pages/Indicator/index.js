@@ -35,7 +35,7 @@ export default function Indicator() {
                             <ListGroup.Item>Bateria: </ListGroup.Item>
                         </ListGroup>
                         <Link to="/tabela">
-                            <Button variant="warning" style={{marginTop:'2%', marginLeft:'89%'}}>Historico</Button>
+                            <Button variant="warning" style={{marginTop:'2%'}}>Historico</Button>
                         </Link>
                     </Col>
                 </Row>
