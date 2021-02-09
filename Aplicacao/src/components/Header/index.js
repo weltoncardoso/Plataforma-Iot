@@ -10,20 +10,27 @@ import api from '../Connections/api';
 export default function Header() {
 
     const [device, setDevice] = useState([]);
+    const [selectDevice, setSelectDevice] = useState({ device: '', ts: '', counter: '', lat: '', long: '', bateria: '' })
 
     useEffect(() => {
-        handleDevices();
+        handleDevices()
     }, [])
 
     async function handleDevices() {
-        let devi = await ( await api.get('gps')).data.map((item, index) =>{
-            return{
+        let devi = await (await api.get('gps/10')).data.map((item, index) => {
+            return {
                 ...item,
                 key: index,
             }
         })
         setDevice(devi)
     }
+
+    /* function handleSelectDevice(e) {
+       console.log(JSON.stringify(selectDevice))
+    } */
+
+   
 
 
     return (
@@ -34,10 +41,14 @@ export default function Header() {
 
             <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">Devices</Dropdown.Toggle>
-                <Dropdown.Menu>
-                    {device.map((dev) => (
+                <Dropdown.Menu onChange={(e) => setSelectDevice({ selectDevice: e.target.value })}>
+                    {device.length && device.length > 0 ? device.map((dev) => (
                         <Dropdown.Item>{dev.device}</Dropdown.Item>
-                    ))}
+                    )) :
+                        (
+                            <div>Nenhum dispositivo</div>
+                        )
+                    }
                 </Dropdown.Menu>
             </Dropdown>
 
