@@ -1,4 +1,6 @@
+import requests
 from fastapi import APIRouter
+from requests.exceptions import HTTPError
 from .models import *
 from .db import *
 
@@ -43,3 +45,7 @@ async def gps (number: int):
     res.append (Gps (**x))
 
   return res
+
+@router.post ('/new-device')
+async def new_device (device: Device):
+  pass
