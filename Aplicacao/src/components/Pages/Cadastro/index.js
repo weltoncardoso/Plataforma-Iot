@@ -5,12 +5,13 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function Cadastro() {
     return (
-        <Container>
-            <Row>
-                <Link to="/">
-                    <Button variant="light" style={{ marginBottom: '3%' }}><IoMdArrowRoundBack size={30} /></Button>
+        <Container fluid>
+            <Link to="/">
+                    <Button variant="light" style={{ marginBottom: '2%' }}><IoMdArrowRoundBack size={30} /></Button>
                 </Link>
-                <Col lg="12" style={{ alignItems: 'center', justifyContent: 'center', display:'flex', marginLeft:'25%' }}>
+            <Row lg="12">
+                
+                <Col lg="12" style={{ alignItems: 'center', justifyContent: 'center', display:'flex' }}>
                     <Jumbotron >
                         <Form>
                             <Form.Group>
