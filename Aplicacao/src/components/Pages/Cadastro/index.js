@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { Container, Row, Col, Button, Jumbotron, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function Cadastro() {
+    const [cadastro, setCadastro] = useState('');
     return (
         <Container fluid>
             <Link to="/">
