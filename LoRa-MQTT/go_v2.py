@@ -57,7 +57,7 @@ def on_message(client, userdata, msg):
         for i in lista_tipos:
             if tipo in i["name"]:
                 saida = decoder.Decode.decode(message, i)
-                saida_json = "{\"device\":" + str(dev) + saida
+                saida_json = "{\"device\":" + str(dev) + ", " + saida
                 y = on_publish(client2, "/ibti/kafkaout", saida_json)
                 print (saida_json)
                 break
