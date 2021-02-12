@@ -1,0 +1,22 @@
+{
+    "gps_dragino": {
+        "variables": {
+            "var": [ "lat", "long", "bateria"]
+        },
+        "bytes":{
+            "lat": [0, 3],
+            "long": [4, 7],
+            "bateria": [8, 9]
+        },
+        "operations":{
+            "lat": ["sum","div"],
+            "long": ["sum","div"],
+            "bateria": ["mask","div"]
+        },
+        "args":{
+            "lat": [-4294967296, 1000000.0],
+            "long": [-4294967296, 1000000.0],
+            "bateria":[65535, 1000.0]
+        }
+    }
+}
