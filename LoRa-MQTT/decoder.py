@@ -24,7 +24,7 @@ class Decode:
         #print(len(json_params["variables"]["var"]))
         #print(json_params)
 
-        payload_json = "{"
+        payload_json = ""
 
         for i in range(len(json_params["variables"]["var"])):
             variavel = json_params["variables"]["var"][i]

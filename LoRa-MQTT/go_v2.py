@@ -15,8 +15,6 @@ col_types = mydb["tipos"]
 
 client2 = mqtt.Client("pub77")
 client2.connect("localhost", 1883)
-client3 = mqtt.Client("pub656")
-client3.connect("localhost", 1883)
 
 lista_dispositivos = []
 lista_tipos = []
@@ -59,7 +57,9 @@ def on_message(client, userdata, msg):
         for i in lista_tipos:
             if tipo in i["name"]:
                 saida = decoder.Decode.decode(message, i)
-                print (saida)
+                saida_json = "{\"device\":" + str(dev) + saida
+                y = on_publish(client2, "/ibti/kafkaout", saida_json)
+                print (saida_json)
                 break
 
 client = mqtt.Client("sub2")
