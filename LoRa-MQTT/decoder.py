@@ -125,7 +125,10 @@ class Decode:
                     if (j == len(json_params["operations"][variavel]) - 1):
                         payload_json += "\"" + variavel + "\": " + str(var) + ", "
                 elif ("mask" in json_params["operations"][variavel][j]):
-                    print("Operacao de Mascaramento Detectada")
+                    #print("Operacao de Mascaramento Detectada")
+                    var &= json_params["args"][variavel][j]
+                    if (j == len(json_params["operations"][variavel]) - 1):
+                        payload_json += "\"" + variavel + "\": " + str(var) + ", "
                 elif ("mux" in json_params["operations"][variavel][j]):
                     #print("Operacao de Multiplicacao Detectada")
                     var *= json_params["args"][variavel][j]
