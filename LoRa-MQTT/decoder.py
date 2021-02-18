@@ -24,7 +24,7 @@ class Decode:
         #print(len(json_params["variables"]["var"]))
         #print(json_params)
 
-        payload_json = ""
+        payload_json = {}
 
         for i in range(len(json_params["variables"]["var"])):
             variavel = json_params["variables"]["var"][i]
@@ -118,26 +118,27 @@ class Decode:
                     #print("Operacao de Soma Detectada")
                     var += json_params["args"][variavel][j]
                     if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json += "\"" + variavel + "\": " + str(var) + ", "
+                        payload_json[variavel] = var
                 elif ("div" in json_params["operations"][variavel][j]):
                     #print("Operacao de Divisao Detectada")
                     var /= json_params["args"][variavel][j]
                     if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json += "\"" + variavel + "\": " + str(var) + ", "
+                        payload_json[variavel] = var
                 elif ("mask" in json_params["operations"][variavel][j]):
                     #print("Operacao de Mascaramento Detectada")
                     var &= json_params["args"][variavel][j]
                     if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json += "\"" + variavel + "\": " + str(var) + ", "
+                        payload_json[variavel] = var
                 elif ("mux" in json_params["operations"][variavel][j]):
                     #print("Operacao de Multiplicacao Detectada")
                     var *= json_params["args"][variavel][j]
                     if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json += "\"" + variavel + "\": " + str(var) + ", "
+                        payload_json[variavel] = var
 
-        payload_json += "\"ts\": " + str(ts) + "}"
+        payload_json["ts"] = ts
     #def Decoding (self):
         print("#### DECODER ####")
+        print (str(payload_json))
         return payload_json
 
 
