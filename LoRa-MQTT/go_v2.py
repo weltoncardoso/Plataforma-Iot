@@ -36,6 +36,9 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("ibti/#")
 
 def on_message(client, userdata, msg):
+    global lista_dispositivos
+    global lista_tipos
+
     message = ''
     message = str(msg.payload.decode("utf-8"))
     #print(message)
@@ -69,10 +72,13 @@ def on_message(client, userdata, msg):
             except Exception as e:
                 print(e)
                 saida_erro = {}
+                time_stamp = datetime.now()
                 saida_erro["erro"] = str(e)
+                saida_erro["time"] = str(time_stamp.hour) + ":" + str(time_stamp.minute) + ":" + str(time_stamp.second) + " - " + str(time_stamp.day) + "/" + str(time_stamp.month) + "/" + str(time_stamp.year)
                 x = col_errors.insert_one(saida_erro)
 
     elif ("atualizar listas" in message):
+        print("##Atualizar##")
         lista_dispositivos = []
         lista_tipos = []
         cursor = col_dev.find()
@@ -86,6 +92,7 @@ def on_message(client, userdata, msg):
         saida_log = {}
         time_stamp = datetime.now()
         saida_log["log"] = "listas atualizadas em " + str(time_stamp.hour) + ":" + str(time_stamp.minute) + ":" + str(time_stamp.second) + " - " + str(time_stamp.day) + "/" + str(time_stamp.month) + "/" + str(time_stamp.year)
+        x = col_errors.insert_one(saida_log)
 
 client = mqtt.Client("sub2")
 client.connect("localhost", 1883, 60)
