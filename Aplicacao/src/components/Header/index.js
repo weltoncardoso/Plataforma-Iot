@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import './styles.css';
-import { Dropdown } from 'react-bootstrap';
-import './styles.css';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.svg';
+import {useSelector} from 'react-redux';//uso ainda não foi definido
+import './styles.css';
+
 import api from '../../Connections/api';
+
+import Logo from '../../assets/logo.svg';
+
+import { Dropdown } from 'react-bootstrap';
 
 export default function Header() {
 
