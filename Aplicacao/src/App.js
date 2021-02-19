@@ -1,10 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react'
 
-import Routers from '../src/components/rotas';
+import Routers from '../src/rotas';
 import Header from '../src/components/Header';
-import Side from '../src/components/SideBar';
-import Menu from '../src/components/Menu'
+//import Side from '../src/components/SideBar';//Sidebar está sendo estudado para ser usado futuramente
+
 
 
 function App() {

@@ -3,9 +3,8 @@ import './styles.css';
 import { Dropdown } from 'react-bootstrap';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import Menu from '../Menu'
-import Logo from '../assets/logo.svg';
-import api from '../Connections/api';
+import Logo from '../../assets/logo.svg';
+import api from '../../Connections/api';
 
 export default function Header() {
 
