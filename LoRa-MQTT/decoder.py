@@ -1,144 +1,133 @@
 import json
 import base64
-from datetime import datetime
-
-#payload = "/xBG/f0k8LcPC2M=" #gps
-#payload2 = "AYllhgIA//93" #temp
-
-
-
-
 
 class Decode:
-    def decode(payload_json_input, json_object):
-
-        print("#### DECODER ####")
-        #print (payload_json)
+    def decode(payload_json_input, json_params):
+        # Recebe o mensagem no formato JSON e com os cabeçalhos da API da everynet
         payload_json_full = json.loads(payload_json_input)
+
+        # Separa os bytes de payload da mensagem completa
         payload = payload_json_full["params"]["payload"]
         payload_bytes = (base64.b64decode(payload))
-        json_params = json_object
-        #json.dumps(json_params)
-        ts = payload_json_full["meta"]["time"]
 
-        #print(len(json_params["variables"]["var"]))
-        #print(json_params)
-
+        # Este é a mensagem a ser enviada para o back-end somente com as variáveis configuradas pelo usuário
         payload_json = {}
 
+        # Este for comuta cada variável a ser processada
         for i in range(len(json_params["variables"]["var"])):
             variavel = json_params["variables"]["var"][i]
 
+            # Registra o byte inicial de posição de uma variavel dentro do payload
             byte_min = json_params["bytes"][variavel][0]
+            # Registra o byte final de posição de uma variavel dentro do payload
             byte_max = json_params["bytes"][variavel][1]
-            #byte_total = json_params["bytes"][json_params["variables"]["var"][len(json_params["variables"]["var"])-1]][1]
-            byte_total = json_params["size"]
+
+            # Inicializa o valor bruto variável ser processada
             var = 0
-            #print("## " + variavel + " ##")
-            shift = ((byte_total - byte_max) - 1)*8
-            #print("SHIFT: " + str(shift))
+            # Transforma os bytes lidos do payload de cada variável em inteiro de acordo com a leitura na ordem especificada
             if ("big" in json_params["order"]):
                 var = int.from_bytes(payload_bytes[byte_min:byte_max + 1], byteorder = "big")
-                #var = var >> shift
-
             elif ("little" in json_params["order"]):
                 var = int.from_bytes(payload_bytes[byte_min:byte_max + 1], byteorder = "little")
-            #print(variavel + ": " + str(var))
             
+            # Verifica se existe o parâmetro if para processamento condicional da variável configurado pelo usuario
             if ("if" in json_params.keys()):
-                if (1):
-                    if (variavel in json_params["if"]["var"][i]):
-                        if (json_params["if"]["comp"][i]):
-                            if ("and" in json_params["if"]["comp"][i]):
-                                if (var & int(json_params["if"]["args"][i])):
-                                    if ("sum" in json_params["if"]["do"][i]):
-                                        var += json_params["if"]["arg_do"][i]
-                                    elif ("div" in json_params["if"]["do"][i]):
-                                        var /= json_params["if"]["arg_do"][i]
-                                    elif ("mux" in json_params["if"]["do"][i]):
-                                        var *= json_params["if"]["arg_do"][i]
-                                else:
-                                    if ("sum" in json_params["if"]["else"][i]):
-                                        var += json_params["if"]["arg_else"][i]
-                                    elif ("div" in json_params["if"]["else"][i]):
-                                        var /= json_params["if"]["arg_else"][i]
-                                    elif ("mux" in json_params["if"]["else"][i]):
-                                        var *= json_params["if"]["arg_else"][i]
-                            elif ("or" in json_params["if"]["comp"][i]):
-                                if (var or json_params["if"]["args"][i]):
-                                    if ("sum" in json_params["if"]["do"][i]):
-                                        var += json_params["if"]["arg_do"][i]
-                                    elif ("div" in json_params["if"]["do"][i]):
-                                        var /= json_params["if"]["arg_do"][i]
-                                    elif ("mux" in json_params["if"]["do"][i]):
-                                        var *= json_params["if"]["arg_do"][i]
-                                else:
-                                    if ("sum" in json_params["if"]["else"][i]):
-                                        var += json_params["if"]["arg_else"][i]
-                                    elif ("div" in json_params["if"]["else"][i]):
-                                        var /= json_params["if"]["arg_else"][i]
-                                    elif ("mux" in json_params["if"]["else"][i]):
-                                        var *= json_params["if"]["arg_else"][i]
-                            elif ("lt" in json_params["if"]["comp"][i]):
-                                if (var < json_params["if"]["args"][i]):
-                                    if ("sum" in json_params["if"]["do"][i]):
-                                        var += json_params["if"]["arg_do"][i]
-                                    elif ("div" in json_params["if"]["do"][i]):
-                                        var /= json_params["if"]["arg_do"][i]
-                                    elif ("mux" in json_params["if"]["do"][i]):
-                                        var *= json_params["if"]["arg_do"][i]
-                                else:
-                                    if ("sum" in json_params["if"]["else"][i]):
-                                        var += json_params["if"]["arg_else"][i]
-                                    elif ("div" in json_params["if"]["else"][i]):
-                                        var /= json_params["if"]["arg_else"][i]
-                                    elif ("mux" in json_params["if"]["else"][i]):
-                                        var *= json_params["if"]["arg_else"][i]
-                            elif ("gt" in json_params["if"]["comp"][i]):
-                                if (var > json_params["if"]["args"][i]):
-                                    if ("sum" in json_params["if"]["do"][i]):
-                                        var += json_params["if"]["arg_do"][i]
-                                    elif ("div" in json_params["if"]["do"][i]):
-                                        var /= json_params["if"]["arg_do"][i]
-                                    elif ("mux" in json_params["if"]["do"][i]):
-                                        var *= json_params["if"]["arg_do"][i]
-                                else:
-                                    if ("sum" in json_params["if"]["else"][i]):
-                                        var += json_params["if"]["arg_else"][i]
-                                    elif ("div" in json_params["if"]["else"][i]):
-                                        var /= json_params["if"]["arg_else"][i]
-                                    elif ("mux" in json_params["if"]["else"][i]):
-                                        var *= json_params["if"]["arg_else"][i]
+                if (variavel in json_params["if"]["var"][i]):
+                    # Alias de valores
+                    param_comp = json_params["if"]["comp"][i]
+                    param_args = json_params["if"]["args"][i]
+                    param_do   = json_params["if"]["do"][i]
+                    param_arg_do = json_params["if"]["arg_do"][i]
+                    param_else   = json_params["if"]["else"][i]
+                    param_arg_else = json_params["if"]["arg_else"][i]
 
-
+                    if (param_comp):
+                        if ("and" in param_comp):
+                            if (var & int(param_args)):
+                                if ("sum" in param_do):
+                                    var += param_arg_do
+                                elif ("div" in param_do):
+                                    var /= param_arg_do
+                                elif ("mux" in param_do):
+                                    var *= param_arg_do
+                            else:
+                                if ("sum" in param_else):
+                                    var += param_arg_else
+                                elif ("div" in param_else):
+                                    var /= param_arg_else
+                                elif ("mux" in param_else):
+                                    var *= param_arg_else
+                        elif ("or" in param_comp):
+                            if (var or param_arg_do):
+                                if ("sum" in param_do):
+                                    var += param_arg_do
+                                elif ("div" in param_do):
+                                    var /= param_arg_do
+                                elif ("mux" in param_do):
+                                    var *= param_arg_do
+                            else:
+                                if ("sum" in param_else):
+                                    var += param_arg_else
+                                elif ("div" in param_else):
+                                    var /= param_arg_else
+                                elif ("mux" in param_else):
+                                    var *= param_arg_else
+                        elif ("lt" in param_comp):
+                            if (var < param_args):
+                                if ("sum" in param_do):
+                                    var += param_arg_do
+                                elif ("div" in param_do):
+                                    var /= param_arg_do
+                                elif ("mux" in param_do):
+                                    var *= param_arg_do
+                            else:
+                                if ("sum" in param_else):
+                                    var += param_arg_else
+                                elif ("div" in param_else):
+                                    var /= param_arg_else
+                                elif ("mux" in param_else):
+                                    var *= param_arg_else
+                        elif ("gt" in param_comp):
+                            if (var > param_args):
+                                if ("sum" in param_do):
+                                    var += param_arg_do
+                                elif ("div" in param_do):
+                                    var /= param_arg_do
+                                elif ("mux" in param_do):
+                                    var *= param_arg_do
+                            else:
+                                if ("sum" in param_else):
+                                    var += param_arg_else
+                                elif ("div" in param_else):
+                                    var /= param_arg_else
+                                elif ("mux" in param_else):
+                                    var *= param_arg_else
+            # Este for comuta as operações configuradas para cada variável a ser processada
             for j in range(len(json_params["operations"][variavel])):
-
-                #print("i: " + str(i) + ", j: " + str(j))
+                # Distigue o tipo de operação na ordem configurada pelo usuário 
                 if ("sum" in json_params["operations"][variavel][j]):
                     #print("Operacao de Soma Detectada")
                     var += json_params["args"][variavel][j]
-                    if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json[variavel] = var
                 elif ("div" in json_params["operations"][variavel][j]):
                     #print("Operacao de Divisao Detectada")
                     var /= json_params["args"][variavel][j]
-                    if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json[variavel] = var
                 elif ("mask" in json_params["operations"][variavel][j]):
                     #print("Operacao de Mascaramento Detectada")
                     var &= json_params["args"][variavel][j]
-                    if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json[variavel] = var
                 elif ("mux" in json_params["operations"][variavel][j]):
                     #print("Operacao de Multiplicacao Detectada")
                     var *= json_params["args"][variavel][j]
-                    if (j == len(json_params["operations"][variavel]) - 1):
-                        payload_json[variavel] = var
+                
+                # Conclui a parte da mensagem com o valor da variável totalmente processada
+                if (j == len(json_params["operations"][variavel]) - 1):
+                    payload_json[variavel] = var
 
+        # Registra o tempo de envio
+        ts = payload_json_full["meta"]["time"]
         payload_json["ts"] = ts
-    #def Decoding (self):
-        print("#### DECODER ####")
-        print (str(payload_json))
+
+        # Retorna no formato JSON a mensagem finalizada
+        print(json_params["name"]+': '+str(payload_json)+'\n')
         return payload_json
 
 

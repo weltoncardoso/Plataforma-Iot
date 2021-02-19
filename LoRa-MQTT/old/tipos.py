@@ -9,13 +9,13 @@ gps_dragino = {
         "bateria": [8, 9]
     },
     "if":{
-        "var": ["lat", "long"],
-        "comp" : ["and", "and"], #and, or, gt, lt, gt=, lt=
-        "args" : [2147483648, 2147483648],
-        "do" : ["sum", "sum"],
-        "arg_do" : [-4294967296, -4294967296],
-        "else": ["sum", "sum"],
-        "arg_else" : [0, 0]
+        "var":  [ "lat", "long", "bateria"],
+        "comp" : ["and", "and","none"], #and, or, gt, lt, gt=, lt=
+        "args" : [2147483648, 2147483648,0],
+        "do" : ["sum", "sum","none"],
+        "arg_do" : [-4294967296, -4294967296,0],
+        "else": ["sum", "sum","none"],
+        "arg_else" : [0, 0,0]
     },
     "operations":{
         "lat": ["div"],
